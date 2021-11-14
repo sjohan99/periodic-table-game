@@ -7,6 +7,7 @@ import pygame
 
 BACKGROUND = (0, 0, 0)
 SQUARE_WIDTH = 64
+FONT = 'Comic Sans'
 
 screen = pygame.display.set_mode((1152, 800))
 pygame.display.set_caption("Periodic Table Quiz")
@@ -59,11 +60,11 @@ def start_game():
     atoms = create_atoms()
     unfound_atoms = atoms.copy()
     rects = create_atomrects(atoms)
-    num_font = pygame.font.SysFont('Arial', 18)
-    sym_font = pygame.font.SysFont('Arial', 28)
-    big_num_font = pygame.font.SysFont('Arial', 28)
-    big_sym_font = pygame.font.SysFont('Arial', 40)
-    question_font = pygame.font.SysFont('Arial', 30)
+    num_font = pygame.font.SysFont(FONT, 18)
+    sym_font = pygame.font.SysFont(FONT, 28)
+    big_num_font = pygame.font.SysFont(FONT, 28)
+    big_sym_font = pygame.font.SysFont(FONT, 40)
+    question_font = pygame.font.SysFont(FONT, 30)
     question_square = pygame.Rect(((screen.get_width()/2)-50, 650), (100, 100))
 
     current_atom = random.choice(unfound_atoms)
@@ -106,6 +107,7 @@ def start_game():
         pygame.display.flip()
         if wrong_atom_clicked:
             pygame.time.delay(100)
+            wrong_atom_clicked = False
 
 
 def render_atom_text(num_font, r, sym_font):
