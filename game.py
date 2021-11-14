@@ -127,7 +127,11 @@ def correct_atom_clicked(current_atom, r, unfound_atoms):
     r.set_found()
     r.change_bg()
     unfound_atoms.remove(current_atom)
-    current_atom = random.choice(unfound_atoms)
+    try:
+        current_atom = random.choice(unfound_atoms)
+    except IndexError:
+        print("All elements found, now exiting")
+        exit(0)
     return current_atom
 
 
