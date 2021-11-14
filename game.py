@@ -25,12 +25,23 @@ def create_atoms():
 
 
 def create_layout():
+    """
+    creates a 2D list 9*18 where ones represent a square to be drawn
+    and zeros represent where nothing should be drawn. This creates
+    a correct layout of the periodic table
+    :return: a matrix where 1s represent an element
+    """
     p_table = [[1] + [0] * 16 + [1], [1] * 2 + [0] * 10 + [1] * 6, [1] * 2 + [0] * 10 + [1] * 6, [1] * 18, [1] * 18,
                [1] * 18, [1] * 18, [0] * 2 + [1] * 14 + [0] * 2, [0] * 2 + [1] * 14 + [0] * 2]
     return p_table
 
 
 def create_atomrects(atoms):
+    """
+    Creates a list of AtomRects which has a pygame Rect and it's associated atom.
+    :param atoms: a list of Atoms of every element in the periodic table.
+    :return: a list of AtomRects which can be drawn to represent the periodic table
+    """
     atomrecs = []
     w = SQUARE_WIDTH
     p_table = create_layout()
@@ -56,6 +67,15 @@ def create_atomrects(atoms):
 
 
 def start_game():
+    """
+    Initializes the game and starts it.
+    Game loop:
+        render question
+        loop through all rects
+        if correct element is clicked -> remove and assign a new to be found
+        else increase wrong counter -> if wrong counter > 3 then show the position
+    :return: None
+    """
     pygame.init()
     atoms = create_atoms()
     unfound_atoms = atoms.copy()
